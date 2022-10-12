@@ -2,26 +2,21 @@ import { Slot } from '@radix-ui/react-slot';
 import { clsx } from 'clsx';
 import { ReactNode } from 'react';
 
-export interface TextProps {
-    size?: 'sm' | 'md' | 'lg';
+export interface ButtonProps {
     children: ReactNode; //Qqr coisa dentro do React válida como children.
     asChild?: boolean;
 }
 
-export function Text({ size = 'md', children, asChild = false }: TextProps) {
+export function Button({ children, asChild = false }: ButtonProps) {
 
-    const Comp = asChild ? Slot : 'span';
+    const Comp = asChild ? Slot : 'button';
     //o slot pega todas as propriedades aplicadas ao Comp e as transfere para o 1º componente que vem dentro do children.
 
     return(
         <Comp 
         className={clsx(
-            'text-gray-100 font-sans',
-            {
-                'text-xs': size === 'sm', 
-                'text-sm': size === 'md',
-                'text-md': size === 'lg', //aplica o font-size global 'text-md' se o size da TextProps for igual a 'lg'.
-            }
+            'py-4 px-3 bg-cyan-500 font-semibold text-black text-sm rounded w-full hover:bg-cyan-300 transition-colors focus:ring-2 ring-white',
+            
         )}
         >
             {children}
