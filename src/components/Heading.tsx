@@ -6,9 +6,10 @@ export interface HeadingProps {
     size?: 'sm' | 'md' | 'lg';
     children: ReactNode; //Qqr coisa dentro do React válida como children.
     asChild?: boolean;
+    className?: string;
 }
 
-export function Heading({ size = 'md', children, asChild = false }: HeadingProps) {
+export function Heading({ size = 'md', children, asChild = false, className }: HeadingProps) {
 
     const Comp = asChild ? Slot : 'h2';
     //o slot pega todas as propriedades aplicadas ao Comp e as transfere para o 1º componente que vem dentro do children.
@@ -21,7 +22,8 @@ export function Heading({ size = 'md', children, asChild = false }: HeadingProps
                 'text-lg': size === 'sm', 
                 'text-xl': size === 'md',
                 'text-2xl': size === 'lg', //aplica o font-size global 'text-md' se o size da TextProps for igual a 'lg'.
-            }
+            },
+            className
         )}
         >
             {children}
